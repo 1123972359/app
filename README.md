@@ -20,5 +20,13 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 人物立绘
+
+ 1. 新入旧出
+ 2. 位置移动
+
+### 转场动画
+
+### 对话框
+
+### 选项框

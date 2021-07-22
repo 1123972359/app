@@ -1,0 +1,39 @@
+@function vw($x, $vpw: 750) {
+  @return ($x / $vpw * 100) * 1vw;
+}
+
+// show
+.show-leave-active,
+.show-enter-active {
+  transition: all 0.5s ease;
+}
+
+.show-enter-from,
+.show-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.show-leave-from,
+.show-enter-to {
+  transform: scale(1);
+  opacity: 1;
+}
+
+// fade
+.fade-leave-active,
+.fade-enter-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateX(-100vw);
+  opacity: 0;
+}
+
+.fade-leave-from,
+.fade-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
