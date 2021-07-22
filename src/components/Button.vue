@@ -13,7 +13,7 @@ export default {};
   padding: vw(16) vw(48);
   font-size: vw(36);
   color: #fff;
-  background: #409eff;
+  background: $blue;
   cursor: pointer;
   border-radius: vw(16);
   letter-spacing: 2px;

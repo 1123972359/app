@@ -2,9 +2,7 @@
   = 人物立绘 =
 -->
 <template>
-  <transition name="fade">
-    <div class="vertical-drawing" v-show="show">1</div>
-  </transition>
+  <div class="vertical-drawing" v-show="show">1</div>
 </template>
 
 <script>

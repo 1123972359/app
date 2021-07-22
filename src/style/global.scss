@@ -1,3 +1,9 @@
+$blue: #409eff;
+$orange: #e6a23c;
+$pink: #f56c6c;
+$gray: #909399;
+$green: #67c23a;
+
 @function vw($x, $vpw: 750) {
   @return ($x / $vpw * 100) * 1vw;
 }

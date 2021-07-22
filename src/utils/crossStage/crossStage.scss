@@ -16,28 +16,31 @@
   &:nth-child(1) {
     left: -100vw;
     top: -100vh;
-    background: #e6a23c;
+    background: $orange;
     z-index: 500;
     transition-delay: 50ms;
   }
+
   &:nth-child(2) {
     bottom: -100vh;
     left: -100vw;
-    background: #f56c6c;
+    background: $pink;
     z-index: 504;
     transition-delay: 150ms;
   }
+
   &:nth-child(3) {
     top: -100vh;
     right: -100vw;
-    background: #909399;
+    background: $gray;
     z-index: 503;
     transition-delay: 200ms;
   }
+
   &:nth-child(4) {
     bottom: -100vh;
     right: -100vw;
-    background: #67c23a;
+    background: $green;
     z-index: 502;
     transition-delay: 100ms;
   }
@@ -49,14 +52,17 @@
       left: 0;
       top: 0;
     }
+
     &:nth-child(2) {
       left: 0;
       bottom: 0;
     }
+
     &:nth-child(3) {
       right: 0;
       top: 0;
     }
+
     &:nth-child(4) {
       right: 0;
       bottom: 0;
@@ -69,14 +75,17 @@
     left: -100vw;
     top: -100vh;
   }
+
   &:nth-child(2) {
     bottom: -100vh;
     left: -100vw;
   }
+
   &:nth-child(3) {
     top: -100vh;
     right: -100vw;
   }
+
   &:nth-child(4) {
     bottom: -100vh;
     right: -100vw;
