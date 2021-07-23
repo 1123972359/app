@@ -26,20 +26,38 @@ $green: #67c23a;
   opacity: 1;
 }
 
-// fade
-.fade-leave-active,
-.fade-enter-active {
+// fade-left
+.fade-left-leave-active,
+.fade-left-enter-active {
   transition: all 0.5s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.fade-left-enter-from,
+.fade-left-leave-to {
   transform: translateX(-100vw);
   opacity: 0;
 }
 
-.fade-leave-from,
-.fade-enter-to {
+.fade-left-leave-from,
+.fade-left-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+// fade-right
+.fade-right-leave-active,
+.fade-right-enter-active {
+  transition: all 0.5s ease;
+}
+
+.fade-right-enter-from,
+.fade-right-leave-to {
+  transform: translateX(200vw);
+  opacity: 0;
+}
+
+.fade-right-leave-from,
+.fade-right-enter-to {
   transform: translateX(0);
   opacity: 1;
 }

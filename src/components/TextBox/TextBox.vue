@@ -8,11 +8,10 @@
     v-show="show"
     @click="handleClick"
   >
-    <div
-      class="hide-button"
-      :class="{ 'hide-button-click': snake.hideButton }"
-      @click="snake.hideButton = !snake.hideButton"
-    ></div>
+    <HideButton
+      :hide="snake.hideButton"
+      @on-click="snake.hideButton = !snake.hideButton"
+    />
     <span class="text" :class="{ 'text-show': snake.textShow }">{{
       snake.value
     }}</span>
@@ -22,6 +21,7 @@
 <script>
 import { reactive, watch } from "@vue/runtime-core";
 import { delay } from "@/utils";
+import HideButton from "./HideButton";
 export default {
   props: {
     show: {
@@ -33,7 +33,9 @@ export default {
       default: "",
     },
   },
-  setup(props) {
+  emits: ["on-click"],
+  components: { HideButton },
+  setup(props, { emit }) {
     let snake = reactive({
       value: "",
       textShow: false,
@@ -45,14 +47,23 @@ export default {
       () => props.text,
       async () => {
         snake.textShow = false;
-        await delay(() => {
-          snake.value = props.text;
-          snake.textShow = true;
-        });
+        await delay(350);
+        snake.value = props.text;
+        snake.textShow = true;
       }
     );
 
-    const handleClick = () => {};
+    const handleClick = (e) => {
+      const ignores = ["hide-button"];
+      const className = e.target.className;
+      for (let i in ignores) {
+        if (new RegExp(ignores[i]).test(className)) {
+          return;
+        }
+      }
+      // todo
+      emit("on-click");
+    };
     return {
       snake,
       handleClick,
@@ -88,37 +99,6 @@ export default {
   > .text-show {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  > .hide-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: vw(100);
-    height: vw(40);
-    line-height: vw(40);
-    background: $orange;
-    text-align: center;
-    color: #fff;
-    overflow: hidden;
-    cursor: pointer;
-
-    &::before {
-      content: ">";
-      width: inherit;
-      height: inherit;
-      display: inline-block;
-      transition-duration: 250ms;
-      transform: rotateZ(90deg);
-    }
-  }
-
-  > .hide-button-click {
-    top: vw(0);
-
-    &::before {
-      transform: rotateZ(-90deg);
-    }
   }
 }
 .hide-text-box {

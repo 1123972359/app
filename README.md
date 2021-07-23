@@ -1,59 +1,79 @@
 # app
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
 
-### 首页
-   
-   - views/index
+### next 下次更新目标
 
-   1. 开始按钮 ✔
+1. 剧情+立绘
+
+### 首页
+
+- views/index
+
+1.  开始按钮 ✔
 
 ### 游戏
 
-   - views/game
+- views/game
 
 ### 全局
 
-   1. 点击效果
+1.  点击效果
 
 ### 人物立绘
 
-   - components/VerticalDrawing
-  
-   1. 新入旧出
-   2. 位置移动
+- components/VerticalDrawing
+
+### 场景人物数
+
+### 人物主次
+
+1.  新入旧出
+2.  位置移动
 
 ### 转场动画
 
-   - utils/crossStage ✔
+- utils/crossStage ✔
+
+### 加载页
+
+- views/loading
 
 ### 对话框
 
-   - components/TextBox
-   
-   1. 文字变更效果 ✔
-   2. 隐藏 ✔
+- components/TextBox
+
+1.  文字变更效果 ✔
+2.  隐藏 ✔
 
 ### 选项框
 
 ### 流式剧情
 
-   1. JSON格式 
+1.  JSON 格式 ✔
+
+### 剧情结束
+
+1. ending

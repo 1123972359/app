@@ -17,13 +17,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vertical-drawing {
-  position: fixed;
-  bottom: 0;
-  left: vw(80);
-  width: 50%;
-  height: vw(900);
-  background: red;
-  z-index: 80;
-}
+@import "./VerticalDrawing.scss";
 </style>

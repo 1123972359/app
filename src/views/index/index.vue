@@ -1,7 +1,8 @@
 <template>
   <div class="bg">
     <div class="start">
-      <Button @click="handleStart">开始游戏</Button>
+      <Button @click="handleStart('/game')">开始游戏</Button>
+      <Button @click="handleStart('/loading')">加载页</Button>
     </div>
   </div>
 </template>
@@ -15,9 +16,8 @@ export default {
   },
   setup() {
     const router = useRouter();
-    console.log(router);
-    const handleStart = () => {
-      router.push("/game");
+    const handleStart = (path) => {
+      router.push(path);
     };
     return {
       handleStart,

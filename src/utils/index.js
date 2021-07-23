@@ -1,14 +1,12 @@
 /**
  * 延时
- * @param {Function} callback
  * @param {Number} times 毫秒
  * @returns
  */
-export const delay = (callback, times = 250) => {
+export const delay = (times = 1000) => {
   return new Promise((resolve) => {
-    setTimeout(async () => {
-      callback && callback();
-      await resolve();
+    setTimeout(() => {
+      resolve();
     }, times);
   });
 };

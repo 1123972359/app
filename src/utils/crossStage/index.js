@@ -106,9 +106,3 @@ class CrossStage {
 export const cross = new CrossStage();
 
 cross.init();
-
-export const vueCrossStage = {
-  install(app) {
-    app.$cross = cross;
-  },
-};

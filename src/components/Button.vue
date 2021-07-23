@@ -11,8 +11,10 @@ export default {};
 <style lang="scss" scoped>
 .button {
   padding: vw(16) vw(48);
+  margin: vw(20);
   font-size: vw(36);
   color: #fff;
+  text-align: center;
   background: $blue;
   cursor: pointer;
   border-radius: vw(16);
