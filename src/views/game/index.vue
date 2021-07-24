@@ -1,16 +1,26 @@
+<!--
+  = 游戏页面 =
+    - 背景层
+    - 立绘层
+    - 文字框
+-->
 <template>
   <Background>
-    <template v-if="false">
-      <VerticalDrawingGroup v-model:main="conf.main">
-        <transition name="fade-right">
-          <VerticalDrawing v-model:show="show.showVD" />
+    <VerticalDrawingGroup v-show="show.showVD">
+      <template v-for="item in VDConf" :key="item.roleId">
+        <transition :name="'fade-' + item.roleApproachMode">
+          <VerticalDrawing
+            :show="item.roleApproachMode && item.appearance"
+            :mode="item.roleApproachMode"
+            :isTopFloor="TBConf.speakingRoleId === item.roleId"
+          />
         </transition>
-      </VerticalDrawingGroup>
-    </template>
+      </template>
+    </VerticalDrawingGroup>
     <transition name="show">
       <TextBox
-        v-model:show="show.showTB"
-        :text="conf.text"
+        :show="show.showTB"
+        :text="TBConf.text"
         @on-click="handleNextClick"
       />
     </transition>
@@ -35,21 +45,34 @@ export default {
   setup() {
     let linesIndex = 0;
     const router = useRouter();
-    const data = processData?.process[processIndex];
+    const data = processData?.process[processIndex]; // 当前进度的舞台的数据
     const linesLength = data.lines.length;
+
+    // 控制
     const show = reactive({
       showVD: false,
       showTB: false,
     });
 
-    const conf = reactive({
+    // VerticalDrawing的数据
+    const VDConf = reactive({ ...data.role });
+
+    // TextBox的数据
+    const TBConf = reactive({
       text: "",
-      position: "left",
-      main: "1",
+      speakingRoleId: "",
     });
 
-    const changeLines = async (text) => {
-      conf.text = text;
+    const changeLines = (line) => {
+      // 改变立绘
+      VDConf[line.roleId] = {
+        ...VDConf[line.roleId],
+        roleApproachMode: line.roleApproachMode,
+        appearance: line.appearance,
+      };
+      // 新的对话
+      TBConf.text = line.text;
+      TBConf.speakingRoleId = line.roleId;
       linesIndex++;
     };
 
@@ -60,23 +83,26 @@ export default {
         router.push("/loading");
         return;
       }
-      changeLines(data?.lines[linesIndex]?.text);
+      changeLines(data?.lines[linesIndex]);
     };
 
     onMounted(async () => {
       await delay(350);
-      show.showVD = true;
-      show.showTB = true;
+      // 控制立绘
+      show.showVD = data.showVD;
+      // 控制文字框
+      show.showTB = data.showTB;
 
       if (query.p) {
         processIndex = query.p;
       }
-      changeLines(data?.lines[0]?.text);
+      changeLines(data?.lines[0]);
     });
 
     return {
       show,
-      conf,
+      VDConf,
+      TBConf,
       handleNextClick,
     };
   },

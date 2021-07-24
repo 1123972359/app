@@ -3,6 +3,7 @@ $orange: #e6a23c;
 $pink: #f56c6c;
 $gray: #909399;
 $green: #67c23a;
+$animation-duration: 500ms;
 
 @function vw($x, $vpw: 750) {
   @return ($x / $vpw * 100) * 1vw;
@@ -11,7 +12,7 @@ $green: #67c23a;
 // show
 .show-leave-active,
 .show-enter-active {
-  transition: all 0.5s ease;
+  transition: all $animation-duration ease;
 }
 
 .show-enter-from,
@@ -29,7 +30,7 @@ $green: #67c23a;
 // fade-left
 .fade-left-leave-active,
 .fade-left-enter-active {
-  transition: all 0.5s ease;
+  transition: all $animation-duration ease;
 }
 
 .fade-left-enter-from,
@@ -47,7 +48,7 @@ $green: #67c23a;
 // fade-right
 .fade-right-leave-active,
 .fade-right-enter-active {
-  transition: all 0.5s ease;
+  transition: all $animation-duration ease;
 }
 
 .fade-right-enter-from,

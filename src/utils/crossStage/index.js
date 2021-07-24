@@ -1,21 +1,7 @@
 /**
  * 过场动画
  */
-function CSSEnd() {
-  const el = document.createElement("surface");
-  const transitions = {
-    transition: "transitionend",
-    OTransition: "oTransitionEnd",
-    MozTransition: "transitionend",
-    WebkitTransition: "webkitTransitionEnd",
-  };
-
-  for (let t in transitions) {
-    if (el.style[t] !== undefined) {
-      return transitions[t];
-    }
-  }
-}
+import { CSSEnd } from "@/utils";
 
 const id = "CROSS_ID";
 const setEnd = CSSEnd();
