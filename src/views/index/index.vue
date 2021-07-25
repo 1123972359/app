@@ -3,6 +3,7 @@
     <div class="start">
       <Button @click="handleStart('/game')">开始游戏</Button>
       <Button @click="handleStart('/loading')">加载页</Button>
+      <Button @click="handleStart('/animation')">动画页</Button>
     </div>
   </div>
 </template>

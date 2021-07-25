@@ -19,6 +19,11 @@ const router = createRouter({
       name: "loading",
       component: () => import("@/views/loading/index"),
     },
+    {
+      path: "/animation",
+      name: "animation",
+      component: () => import("@/views/animation/index"),
+    },
   ],
 });
 
