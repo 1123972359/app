@@ -32,7 +32,7 @@ class Animation {
   }
 
   _formatter(str) {
-    const s = str.split("px")[0];
+    const s = typeof str === "string" ? str.split("px")[0] : str;
     return s ? Number(s) : 0;
   }
 
@@ -57,8 +57,9 @@ class Animation {
 
   _getCur() {
     return {
-      translateX: () => this._formatter(this.el.style.left),
-      translateY: () => this._formatter(this.el.style.top),
+      translateX: () =>
+        this._formatter(this.el.offsetLeft || this.el.style.left),
+      translateY: () => this._formatter(this.el.offsetTop || this.el.style.top),
       rotate: () =>
         Number(this._getTransform("rotate", `rotate\\((\\d+)deg\\)`)),
       scale: () => Number(this._getTransform("scale", `scale\\((\\d+)\\)`)),
