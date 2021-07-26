@@ -13,13 +13,13 @@
  *                  roleId: Number,                       // 角色id
  *                  roleName: String,                     // 角色名称
  *                  roleImg: String,                      // 角色图片地址
+ *                  roleInitPosition: String,             // 角色初始位置 left | right
  *              }
  *          },
  *          lines: [
  *              {
  *                  appearance: Boolean,                  // 是否展示立绘
  *                  roleId: Number,                       // 角色id
- *                  roleApproachMode: String,             // 角色进场方式
  *                  text: String,                         // 台词
  *              }
  *          ]
@@ -43,48 +43,52 @@ export const processData = {
           roleId: 1,
           roleName: "reborn",
           roleImg: "",
+          roleInitPosition: "right",
         },
         2: {
           roleId: 2,
           roleName: "泽田纲吉",
           roleImg: "",
+          roleInitPosition: "left",
         },
       },
       lines: [
         {
           appearance: true,
           roleId: 1,
-          roleApproachMode: "right",
           text: "从今天开始，你就是彭格列第十代首领。",
+          behavior: [
+            { name: "left", data: [300] },
+            { name: "step", data: { duration: 100 } },
+          ],
         },
         {
           appearance: true,
           roleId: 2,
-          roleApproachMode: "left",
           text: "别开玩笑了，小朋友，你爸爸妈妈呢？",
+          behavior: [
+            { name: "left", data: [40] },
+            { name: "step", data: { duration: 100 } },
+          ],
         },
         {
           appearance: true,
           roleId: 1,
-          roleApproachMode: "left",
           text: "（reborn跳起来，狠狠地给泽田纲吉来了一个爆栗）",
         },
         {
           appearance: true,
           roleId: 1,
-          roleApproachMode: "right",
           text: "穿好衣服，准备上学了。",
         },
         {
           appearance: true,
           roleId: 2,
-          roleApproachMode: "left",
           text: "为什么你就开始监督我了",
         },
         {
           appearance: false,
           roleId: 1,
-          roleApproachMode: "right",
           text: "快点，走了！",
         },
       ],
@@ -109,19 +113,16 @@ export const processData = {
         {
           appearance: true,
           roleId: 2,
-          roleApproachMode: "left",
           text: "（哇，这个人看着好凶啊）",
         },
         {
           appearance: true,
           roleId: 3,
-          roleApproachMode: "right",
           text: "（眉头一皱）谁？",
         },
         {
           appearance: true,
           roleId: 2,
-          roleApproachMode: "left",
           text: "不好意思！！！",
         },
       ],

@@ -8,13 +8,12 @@
   <Background>
     <VerticalDrawingGroup v-show="show.showVD">
       <template v-for="item in VDConf" :key="item.roleId">
-        <transition :name="'fade-' + item.roleApproachMode">
-          <VerticalDrawing
-            :show="item.roleApproachMode && item.appearance"
-            :mode="item.roleApproachMode"
-            :isTopFloor="TBConf.speakingRoleId === item.roleId"
-          />
-        </transition>
+        <VerticalDrawing
+          :show="item.appearance"
+          :initPosition="item.roleInitPosition"
+          :behavior="item.behavior"
+          :isTopFloor="TBConf.speakingRoleId === item.roleId"
+        />
       </template>
     </VerticalDrawingGroup>
     <transition name="show">
@@ -67,8 +66,8 @@ export default {
       // 改变立绘
       VDConf[line.roleId] = {
         ...VDConf[line.roleId],
-        roleApproachMode: line.roleApproachMode,
         appearance: line.appearance,
+        behavior: line.behavior,
       };
       // 新的对话
       TBConf.text = line.text;

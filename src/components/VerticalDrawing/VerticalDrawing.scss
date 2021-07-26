@@ -1,4 +1,5 @@
-.vertical-drawing-group {}
+.vertical-drawing-group {
+}
 
 .vertical-drawing {
   position: fixed;
@@ -7,17 +8,13 @@
   height: vw(900);
   background: red;
   z-index: 80;
-  transition-duration: $animation-duration;
+  // transition-duration: $animation-duration;
 }
 
 .pos-left {
-  left: vw(40);
-  right: unset;
-  transition-duration: $animation-duration;
+  left: -100vw;
 }
 
 .pos-right {
-  left: unset;
-  right: vw(40);
-  transition-duration: $animation-duration;
+  left: 100vw;
 }
