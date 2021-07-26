@@ -17,8 +17,8 @@
  *      缩放
  *          scale(n: Number)
  *      执行
- *          step({ times: Number, callback: Function })
- *              times {Number} 临时的动画时间
+ *          step({ duration: Number, callback: Function })
+ *              duration {Number} 临时的动画时间
  *          # 重点，必须调用，将此方法前的动画都组合起来
  */
 let id = 1;
@@ -195,12 +195,12 @@ class Animation {
     return this;
   }
 
-  step({ times = "", callback = () => {} } = {}) {
+  step({ duration = "", callback = () => {} } = {}) {
     this._dispatchStack[this._dispatchStack.length - 1].callback = callback;
     this._dispatchStack.push({ id: id++, dispatch: [], callback: () => {} });
     if (!this._locking) {
       this._locking = true;
-      this._tempDuration = times || this.duration;
+      this._tempDuration = duration || this.duration;
       this._dispatch();
     }
     return this;
