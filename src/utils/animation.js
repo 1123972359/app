@@ -161,7 +161,7 @@ class Animation {
   }
 
   top(y = "") {
-    if (!y) {
+    if (y === "") {
       throw new Error("top missing parameter: y");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
@@ -186,7 +186,7 @@ class Animation {
   }
 
   rotate(deg) {
-    if (!deg) {
+    if (deg === "") {
       throw new Error("rotate missing parameter: deg");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
@@ -197,7 +197,7 @@ class Animation {
   }
 
   scale(n) {
-    if (!n) {
+    if (n === "") {
       throw new Error("scale missing parameter: n");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
@@ -208,10 +208,10 @@ class Animation {
   }
 
   filter(name, n) {
-    if (!name) {
+    if (name === "") {
       throw new Error("filter missing parameter: name");
     }
-    if (!n) {
+    if (n === "") {
       throw new Error("filter missing parameter: n");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
