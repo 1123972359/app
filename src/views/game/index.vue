@@ -13,7 +13,8 @@
           :initPosition="item.roleInitPosition"
           :behavior="item.behavior"
           :isTopFloor="TBConf.speakingRoleId === item.roleId"
-        />
+          >{{ item.roleName }}</VerticalDrawing
+        >
       </template>
     </VerticalDrawingGroup>
     <transition name="show">
@@ -44,7 +45,7 @@ export default {
   setup() {
     let linesIndex = 0;
     const router = useRouter();
-    const data = processData?.process[processIndex]; // 当前进度的舞台的数据
+    const data = processData?.process[query.p || processIndex]; // 当前进度的舞台的数据
     const linesLength = data.lines.length;
 
     // 控制
@@ -92,9 +93,6 @@ export default {
       // 控制文字框
       show.showTB = data.showTB;
 
-      if (query.p) {
-        processIndex = query.p;
-      }
       changeLines(data?.lines[0]);
     });
 

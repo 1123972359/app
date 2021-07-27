@@ -21,6 +21,7 @@
  *                  appearance: Boolean,                  // 是否展示立绘
  *                  roleId: Number,                       // 角色id
  *                  text: String,                         // 台词
+ *                  behavior: Array,                      // 行为，存放animation.js方法
  *              }
  *          ]
  *      }
@@ -75,6 +76,16 @@ export const processData = {
           appearance: true,
           roleId: 1,
           text: "（reborn跳起来，狠狠地给泽田纲吉来了一个爆栗）",
+          behavior: [
+            { name: "left", data: [80] },
+            { name: "top", data: [0] },
+            { name: "step", data: { duration: 250 } },
+            { name: "rotate", data: [360] },
+            { name: "step", data: { duration: 250 } },
+            { name: "bottom", data: { duration: 1000 } },
+            { name: "left", data: [300] },
+            { name: "step", data: { duration: 250 } },
+          ],
         },
         {
           appearance: true,
@@ -87,9 +98,13 @@ export const processData = {
           text: "为什么你就开始监督我了",
         },
         {
-          appearance: false,
+          appearance: true,
           roleId: 1,
           text: "快点，走了！",
+          behavior: [
+            { name: "left", data: [999] },
+            { name: "step", data: { duration: 250 } },
+          ],
         },
       ],
     },
@@ -102,14 +117,21 @@ export const processData = {
           roleId: 3,
           roleName: "狱寺凖人",
           roleImg: "",
+          roleInitPosition: 180,
         },
         2: {
           roleId: 2,
           roleName: "泽田纲吉",
           roleImg: "",
+          roleInitPosition: "left",
         },
       },
       lines: [
+        {
+          appearance: true,
+          roleId: 3,
+          text: "",
+        },
         {
           appearance: true,
           roleId: 2,

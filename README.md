@@ -26,15 +26,12 @@ npm run lint
 
 ### next 下次更新目标
 
-1. 建立一个动画工具
-2. 立绘使用创建js控制的动画
-3. 完成剧情+立绘
+1. 游戏剧情分支
+2. 选项框
 
 ### 首页
 
 - views/index
-
-1.  开始按钮 ✔
 
 ### 游戏
 
@@ -48,16 +45,15 @@ npm run lint
 
 - components/VerticalDrawing
 
-### 场景人物数
-
-### 人物主次
-
-1.  新入旧出
-2.  位置移动
+1. 图片
+2. 拥有动画行为，建立 utils/animation.js ✔
 
 ### 转场动画
 
+1. 在路由守卫中处理，进入前与进入后，颜色块可自行换成<img />展示
+
 - utils/crossStage ✔
+- router/index ✔
 
 ### 加载页
 
@@ -74,7 +70,8 @@ npm run lint
 
 ### 流式剧情
 
-1.  JSON 格式 ✔
+1. JSON 格式 ✔
+2. mock/index ✔
 
 ### 剧情结束
 
