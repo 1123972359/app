@@ -6,29 +6,13 @@
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import { createAnimation } from "@/utils/animation";
-// import { delay } from "@/utils";
 export default {
   setup() {
     const anRef = ref(null);
 
     onMounted(async () => {
-      const an = createAnimation({ el: anRef.value, duration: 250 });
-      an.move(100, 400)
-        .step({
-          times: 300,
-          callback: () => {
-            console.log("end 1");
-          },
-        })
-        .rotate(120)
-        .step();
-      an.scale(2).step({
-        callback: () => {
-          console.log("end 3");
-        },
-      });
-      //   await delay(1000);
-      //   an.rotate(45).step();
+      const an = createAnimation({ el: anRef.value, duration: 1000 });
+      an.move(100, 400).step().filter("contrast", 0.5).step().filter("contrast", 1).step();
     });
 
     const handleClick = () => {

@@ -16,12 +16,15 @@
  *          rotate(deg: Number)
  *      缩放
  *          scale(n: Number)
+ *      滤镜
+ *          filter(name: String, n: Number)
  *      执行
  *          step({ duration: Number, callback: Function })
  *              duration {Number} 临时的动画时间
  *          # 重点，必须调用，将此方法前的动画都组合起来
  */
 let id = 1;
+const styleReg = /\((.*)\)/;
 class Animation {
   constructor(config) {
     this.el = config.el;
@@ -60,6 +63,10 @@ class Animation {
       translateX: () =>
         this._formatter(this.el.offsetLeft || this.el.style.left),
       translateY: () => this._formatter(this.el.offsetTop || this.el.style.top),
+      filter: () => {
+        const exec = styleReg.exec(this.el.style.filter);
+        return exec ? Number(exec[1]) : 1;
+      },
       rotate: () =>
         Number(this._getTransform("rotate", `rotate\\((\\d+)deg\\)`)),
       scale: () => Number(this._getTransform("scale", `scale\\((\\d+)\\)`)),
@@ -67,10 +74,15 @@ class Animation {
   }
 
   // 执行
-  _mutations({ name, data }) {
+  _mutations({ name, data, extra }) {
     return {
       translateX: () => (this.el.style.left = `${data}px`),
       translateY: () => (this.el.style.top = `${data}px`),
+      filter: () => {
+        return (this.el.style.filter = `${extra.name}(${Number(
+          data.toFixed(2)
+        )})`);
+      },
       rotate: () => {
         const handle = ` rotate(${Math.round(data)}deg) `;
         const exec = this._execTransform("rotate", `rotate\\((\\d+)deg\\)`);
@@ -112,8 +124,8 @@ class Animation {
             ? this._min(nextPos, item.pos)
             : this._max(nextPos, item.pos);
         // 区分模式
-        if (/translate/.test(item.name)) {
-          this._mutations({ name: item.name, data })();
+        if (/translate|filter/.test(item.name)) {
+          this._mutations({ name: item.name, data, extra: item.extra })();
         } else {
           transform = this._mutations({ name: item.name, data })();
         }
@@ -139,7 +151,7 @@ class Animation {
 
   left(x = "") {
     if (x === "") {
-      throw new Error("a property is missing: x");
+      throw new Error("left missing parameter: x");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
       name: "translateX",
@@ -150,7 +162,7 @@ class Animation {
 
   top(y = "") {
     if (!y) {
-      throw new Error("a property is missing: y");
+      throw new Error("top missing parameter: y");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
       name: "translateY",
@@ -175,7 +187,7 @@ class Animation {
 
   rotate(deg) {
     if (!deg) {
-      throw new Error("a property is missing: deg");
+      throw new Error("rotate missing parameter: deg");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
       name: "rotate",
@@ -186,11 +198,28 @@ class Animation {
 
   scale(n) {
     if (!n) {
-      throw new Error("a property is missing: n");
+      throw new Error("scale missing parameter: n");
     }
     this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
       name: "scale",
       pos: Number(n),
+    });
+    return this;
+  }
+
+  filter(name, n) {
+    if (!name) {
+      throw new Error("filter missing parameter: name");
+    }
+    if (!n) {
+      throw new Error("filter missing parameter: n");
+    }
+    this._dispatchStack[this._dispatchStack.length - 1].dispatch.push({
+      name: "filter",
+      pos: Number(n),
+      extra: {
+        name,
+      },
     });
     return this;
   }
@@ -212,12 +241,12 @@ export const createAnimation = (config) => {
     throw new Error("config should be a object");
   }
   if (!Object.prototype.hasOwnProperty.call(config, "el")) {
-    throw new Error("a property is missing: el");
+    throw new Error("createAnimation missing parameter: el");
   }
   if (
     !/[object HTML\w+Element]/.test(Object.prototype.toString.call(config.el))
   ) {
-    throw new Error("el should be a el");
+    throw new Error("el should be a element");
   }
   return new Animation(config);
 };
