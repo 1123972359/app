@@ -244,7 +244,7 @@ export const createAnimation = (config) => {
     throw new Error("createAnimation missing parameter: el");
   }
   if (
-    !/[object HTML\w+Element]/.test(Object.prototype.toString.call(config.el))
+    !/\[object HTML\w+Element\]/.test(Object.prototype.toString.call(config.el))
   ) {
     throw new Error("el should be a element");
   }
