@@ -37,7 +37,7 @@ import { onMounted } from "@vue/runtime-core";
 import { processData, processIndex, setProcessIndex } from "@/mock";
 import { useRouter } from "vue-router";
 import { delay } from "@/utils";
-import getQuery from "@/rpf/getQuery";
+import getQuery from "@/lib/getQuery";
 const query = getQuery();
 export default {
   name: "App",
